@@ -3,7 +3,7 @@ import { site } from "../data/site";
 
 const nav = [
   { href: "/work", label: "Work" }, { href: "/services", label: "Services" },
-  { href: "/about", label: "About" }, { href: "/insights", label: "Insights" },
+  { href: "/about", label: "About" }, { href: "/blog", label: "Blog" },
 ];
 
 export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
@@ -33,6 +33,15 @@ export function PageIntro({ eyebrow, title, description }: { eyebrow: string; ti
 
 export function SectionHeading({ eyebrow, title, action }: { eyebrow: string; title: string; action?: React.ReactNode }) {
   return <div className="section-heading"><div><p className="kicker"><span>{eyebrow}</span></p><h2>{title}</h2></div>{action}</div>;
+}
+
+export function PortraitMorph({ compact = false }: { compact?: boolean }) {
+  return <figure className={`portrait-morph liquid-target ${compact ? "portrait-compact" : ""}`}>
+    <img className="portrait-original" src="/usaid-portrait.jpg" alt="Usaid Ahmed standing in a courtyard" />
+    <img className="portrait-ai" src="/usaid-portrait-ai.png" alt="" aria-hidden="true" />
+    <div className="portrait-scan" aria-hidden="true" />
+    <figcaption><span><i /> HUMAN / BUILDER</span><strong>Hover to reveal the AI layer</strong></figcaption>
+  </figure>;
 }
 
 export function ProjectVisual({ variant, compact = false }: { variant: string; compact?: boolean }) {

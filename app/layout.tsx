@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { site } from "./data/site";
+import { LiquidCursor } from "./components/liquid-cursor";
 import "./globals.css";
 import "./inner.css";
 
@@ -19,5 +20,5 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, them
 const personSchema = { "@context": "https://schema.org", "@type": "Person", name: site.name, jobTitle: site.title, url: "https://usaid-portfolio.basit-ahmed906.chatgpt.site", email: `mailto:${site.email}`, address: { "@type": "PostalAddress", addressLocality: "Karachi", addressCountry: "PK" }, sameAs: [site.github, site.linkedin], knowsAbout: ["Artificial Intelligence", "Machine Learning", "Agentic AI", "Retrieval-Augmented Generation", "Computer Vision", "Full-stack AI product development"] };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><a className="skip-link" href="#main-content">Skip to content</a><div id="main-content">{children}</div><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} /></body></html>;
+  return <html lang="en"><body><a className="skip-link" href="#main-content">Skip to content</a><LiquidCursor /><div id="main-content">{children}</div><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} /></body></html>;
 }

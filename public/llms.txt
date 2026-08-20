@@ -16,6 +16,17 @@ Usaid Ahmed is an AI Engineer, full-stack AI product builder, and Co-Founder of 
 - SmartFace AI: an academic team project combining face detection, recognition, movement checks, liveness experimentation, calibrated thresholds, attendance rules, and PostgreSQL.
 - Karachi AQI Forecasting: a 10Pearls internship contribution involving API ingestion, Parquet data workflows, feature engineering, multiple forecasting models, and a Streamlit dashboard.
 
+## Verified engineering signals
+- NeuroGlioma AI selected classifier: ROC-AUC 0.933 and PR-AUC 0.953 on the documented evaluation.
+- Clinical AI workflow: 47 automated cross-phase validation checks passed at the reported checkpoint.
+- MRI preparation uses four aligned sequences: T1C, T1, T2, and FLAIR.
+- AQI work covers 24, 48, and 72-hour forecasting horizons.
+
+## Weekly blog
+- Index: /blog
+- RSS feed: /feed.xml
+- Topics include AI product engineering, RAG evaluation, agentic workflows, human approvals, machine learning, and dependable AI systems.
+
 ## Important accuracy notes
 - AgentHive is an early-stage product under active development. Its current proof of concept uses simulated business tools and does not claim live autonomous enterprise integrations.
 - NeuroGlioma AI is research decision-support software under development and must not be represented as medical diagnosis.

@@ -66,6 +66,29 @@ export const services = [
   },
 ];
 
+export const engineeringMetrics = [
+  {
+    value: "0.933",
+    label: "ROC-AUC",
+    context: "Selected GBM classifier on held-out evaluation data",
+  },
+  {
+    value: "47",
+    label: "Automated checks",
+    context: "Cross-phase validation across the clinical AI workflow",
+  },
+  {
+    value: "4",
+    label: "MRI sequences",
+    context: "T1C, T1, T2, and FLAIR aligned before segmentation",
+  },
+  {
+    value: "24·48·72h",
+    label: "Forecast horizons",
+    context: "PM2.5 forecasting windows in the AQI pipeline",
+  },
+];
+
 export const caseStudies = [
   {
     slug: "agenthive",
@@ -82,6 +105,11 @@ export const caseStudies = [
       "AgentHive combines an agent marketplace and natural-language builder with controlled tools, employee permissions, human approvals, scoped memory, budgets, task timelines, and auditability.",
     proof:
       "A controlled Sales Agent proof of concept can plan a workflow, read seeded memory, draft follow-ups, suggest meeting slots, pause for approval, and generate a report using simulated business tools.",
+    metrics: [
+      { value: "01", label: "Controlled POC", detail: "End-to-end sales-agent workflow" },
+      { value: "03", label: "Simulated tools", detail: "Business actions tested safely" },
+      { value: "05", label: "Control layers", detail: "Approval, permission, memory, budget, audit" },
+    ],
     next:
       "The product roadmap moves from the controlled proof of concept toward real OAuth connectors, multi-tenant workspaces, three pre-built agents, verified memory, usage credits, and enterprise controls.",
   },
@@ -100,6 +128,12 @@ export const caseStudies = [
       "The system combines calibrated classification, safety bands, DICOM/NIfTI quality gates, 3D segmentation, physical tumor quantification, anatomical localization, and a clinical viewer.",
     proof:
       "The current implementation includes a calibrated 2D classifier, validated multi-modal volume preparation, a verified MONAI segmentation bundle, physical geometry checks, and a tested clinical-viewer backend.",
+    metrics: [
+      { value: "0.933", label: "ROC-AUC", detail: "Selected classifier" },
+      { value: "0.953", label: "PR-AUC", detail: "Selected classifier" },
+      { value: "47", label: "Automated checks", detail: "Cross-phase validation" },
+      { value: "04", label: "MRI sequences", detail: "T1C · T1 · T2 · FLAIR" },
+    ],
     next:
       "Ongoing work focuses on completing the clinical viewer, decision fusion, reporting, validation, and deployment without presenting the research system as a medical diagnosis.",
   },
@@ -118,6 +152,11 @@ export const caseStudies = [
       "The team integrated SCRFD detection, ArcFace recognition, MediaPipe head movement, MiniFASNet liveness experiments, calibrated thresholds, unknown rejection, PostgreSQL, and explicit attendance rules.",
     proof:
       "The resulting system separates recognition from liveness diagnostics, documents model setup, exposes QA tools, and applies deterministic attendance logic around the model outputs.",
+    metrics: [
+      { value: "04", label: "Vision safeguards", detail: "Detect · recognize · move · liveness" },
+      { value: "02", label: "Decision gates", detail: "Identity and liveness remain separate" },
+      { value: "01", label: "Audit trail", detail: "Deterministic attendance rules" },
+    ],
     next:
       "Future refinement would focus on broader calibration data, monitoring, fairness evaluation, and controlled deployment conditions.",
   },
@@ -136,6 +175,11 @@ export const caseStudies = [
       "The pipeline used Open-Meteo and OpenAQ data, timestamp alignment, Parquet storage, engineered features, Ridge Regression, Random Forest, Gradient Boosting, and a Streamlit dashboard.",
     proof:
       "The system produced 24, 48, and 72-hour PM2.5 forecasting workflows and exposed model insights through a stakeholder-facing dashboard, with CI/CD and feature-store exposure.",
+    metrics: [
+      { value: "03", label: "Forecast horizons", detail: "24 · 48 · 72 hours" },
+      { value: "02", label: "Live data sources", detail: "Open-Meteo and OpenAQ" },
+      { value: "03", label: "Model families", detail: "Ridge · Random Forest · Gradient Boosting" },
+    ],
     next:
       "A production extension would strengthen monitoring, drift detection, alerting, scheduled retraining, and uncertainty communication.",
   },

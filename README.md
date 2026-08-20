@@ -1,4 +1,10 @@
-# vinext-starter
+# Usaid Ahmed — AI Engineer & Product Builder
+
+Premium, proof-led portfolio and weekly AI engineering blog for Usaid Ahmed.
+
+See [BLOGGING.md](./BLOGGING.md) for the exact weekly publishing workflow.
+
+## Project foundation
 
 A clean full-stack starter running on
 [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
