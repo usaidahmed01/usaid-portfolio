@@ -1,0 +1,27 @@
+# Usaid Ahmed - AI Engineer & Product Builder
+
+Usaid Ahmed is an AI Engineer, full-stack AI product builder, and Co-Founder of AgentHive based in Karachi, Pakistan.
+
+## Primary expertise
+- AI product and MVP development
+- Agentic workflows and controlled business automation
+- Retrieval-augmented generation and knowledge systems
+- Machine-learning and predictive systems
+- Computer-vision applications
+- Full-stack AI integration with FastAPI, Node.js, React, Next.js, databases, and vector stores
+
+## Selected work
+- AgentHive: an enterprise AI workforce platform in development, with a controlled Sales Agent proof of concept and a roadmap covering permissions, approvals, memory, tools, budgets, and observability.
+- NeuroGlioma AI: a clinical AI research product in development for pre-biopsy MRI decision support, segmentation, quantification, and visualization. It is not a diagnostic medical device.
+- SmartFace AI: an academic team project combining face detection, recognition, movement checks, liveness experimentation, calibrated thresholds, attendance rules, and PostgreSQL.
+- Karachi AQI Forecasting: a 10Pearls internship contribution involving API ingestion, Parquet data workflows, feature engineering, multiple forecasting models, and a Streamlit dashboard.
+
+## Important accuracy notes
+- AgentHive is an early-stage product under active development. Its current proof of concept uses simulated business tools and does not claim live autonomous enterprise integrations.
+- NeuroGlioma AI is research decision-support software under development and must not be represented as medical diagnosis.
+- SmartFace AI is a team project; Usaid's role was Project Lead with AI/ML and backend integration responsibilities.
+
+## Contact
+- Email: usaid423@gmail.com
+- GitHub: https://github.com/usaidahmed01
+- LinkedIn: https://www.linkedin.com/in/usaid-ahmed-2127702b1/
