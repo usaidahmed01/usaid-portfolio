@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { Arrow, Footer, Header, PortraitMorph, ProjectVisual, SectionHeading } from "./components/site-shell";
+import { Arrow, Footer, Header, ProjectVisual, SectionHeading } from "./components/site-shell";
 import { caseStudies, engineeringMetrics, insights, services } from "./data/site";
 
 export default function Home() {
   return <><Header /><main>
     <section className="hero shell">
       <div className="hero-copy"><p className="kicker hero-kicker"><span className="status-dot" /> AI engineer · Founder · Product builder</p><h1><span>Intelligence,</span><br />engineered into <em>products.</em></h1><p className="hero-description">I’m Usaid Ahmed. I turn complex AI ideas into usable products—combining machine learning, agentic workflows, RAG, data systems, and full-stack engineering.</p><div className="hero-actions"><Link className="button button-primary" href="/contact">Start a conversation <Arrow /></Link><Link className="button button-ghost" href="/work">Explore selected work <Arrow diagonal /></Link></div></div>
-      <div className="hero-system" aria-label="Animated representation of an AI product system"><div className="system-glow" /><div className="system-orbit orbit-one"><i /><i /><i /></div><div className="system-orbit orbit-two"><i /><i /></div><div className="system-core"><span>AI</span><small>PRODUCT<br />SYSTEM</small></div><div className="system-label label-one"><i />MODEL</div><div className="system-label label-two"><i />DATA</div><div className="system-label label-three"><i />PRODUCT</div><div className="system-label label-four"><i />CONTROL</div><div className="hero-portrait"><PortraitMorph compact /></div></div>
+      <div className="hero-system" aria-label="Animated representation of an AI product system"><div className="system-glow" /><div className="system-orbit orbit-one"><i /><i /><i /></div><div className="system-orbit orbit-two"><i /><i /></div><div className="system-core"><span>AI</span><small>PRODUCT<br />SYSTEM</small></div><div className="system-label label-one"><i />MODEL</div><div className="system-label label-two"><i />DATA</div><div className="system-label label-three"><i />PRODUCT</div><div className="system-label label-four"><i />CONTROL</div></div>
       <div className="hero-index"><span>01</span><i /><span>SCROLL TO EXPLORE</span></div>
     </section>
     <div className="capability-strip" aria-label="Core capabilities"><div><span>AGENTIC AI</span><i>✦</i><span>RAG SYSTEMS</span><i>✦</i><span>MACHINE LEARNING</span><i>✦</i><span>COMPUTER VISION</span><i>✦</i><span>FULL-STACK AI</span><i>✦</i><span>AGENTIC AI</span><i>✦</i><span>RAG SYSTEMS</span></div></div>

@@ -35,12 +35,19 @@ export function SectionHeading({ eyebrow, title, action }: { eyebrow: string; ti
   return <div className="section-heading"><div><p className="kicker"><span>{eyebrow}</span></p><h2>{title}</h2></div>{action}</div>;
 }
 
-export function PortraitMorph({ compact = false }: { compact?: boolean }) {
-  return <figure className={`portrait-morph liquid-target ${compact ? "portrait-compact" : ""}`}>
-    <img className="portrait-original" src="/usaid-portrait.jpg" alt="Usaid Ahmed standing in a courtyard" />
-    <img className="portrait-ai" src="/usaid-portrait-ai.png" alt="" aria-hidden="true" />
-    <div className="portrait-scan" aria-hidden="true" />
-    <figcaption><span><i /> HUMAN / BUILDER</span><strong>Hover to reveal the AI layer</strong></figcaption>
+export function ProfilePortrait() {
+  return <figure className="profile-portrait liquid-target">
+    <div className="profile-art">
+      <div className="profile-grid" aria-hidden="true" />
+      <div className="profile-orbit profile-orbit-one" aria-hidden="true" />
+      <div className="profile-orbit profile-orbit-two" aria-hidden="true" />
+      <span className="profile-code code-one" aria-hidden="true">01 / HUMAN</span>
+      <span className="profile-code code-two" aria-hidden="true">02 / SYSTEM</span>
+      <img src="/usaid-body-cutout.png" alt="Usaid Ahmed, AI Engineer and product builder" />
+      <div className="profile-scan" aria-hidden="true" />
+      <div className="profile-nodes" aria-hidden="true"><i /><i /><i /></div>
+    </div>
+    <figcaption><span><i /> USAID AHMED</span><strong>AI Engineer · Product Builder</strong></figcaption>
   </figure>;
 }
 

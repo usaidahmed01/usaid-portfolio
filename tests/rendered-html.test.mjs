@@ -37,8 +37,16 @@ test("renders portfolio metadata and primary positioning", async () => {
   assert.match(html, /engineered into/i);
   assert.match(html, /Engineering evidence/i);
   assert.match(html, /0\.933/i);
-  assert.match(html, /usaid-portrait\.jpg/i);
+  assert.doesNotMatch(html, /usaid-body-cutout\.png/i);
   assert.match(html, /href="\/blog"/i);
+});
+
+test("keeps the extracted portrait inside the self-description experience", async () => {
+  const about = await render("/about");
+  assert.equal(about.response.status, 200);
+  assert.match(about.html, /usaid-body-cutout\.png/i);
+  assert.match(about.html, /I’m Usaid Ahmed/i);
+  assert.match(about.html, /The work is active, not archived/i);
 });
 
 test("publishes the weekly blog index and article routes", async () => {
