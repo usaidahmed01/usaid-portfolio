@@ -35,19 +35,23 @@ export function SectionHeading({ eyebrow, title, action }: { eyebrow: string; ti
   return <div className="section-heading"><div><p className="kicker"><span>{eyebrow}</span></p><h2>{title}</h2></div>{action}</div>;
 }
 
-export function ProfilePortrait() {
-  return <figure className="profile-portrait liquid-target">
-    <div className="profile-art">
-      <div className="profile-grid" aria-hidden="true" />
-      <div className="profile-orbit profile-orbit-one" aria-hidden="true" />
-      <div className="profile-orbit profile-orbit-two" aria-hidden="true" />
-      <span className="profile-code code-one" aria-hidden="true">01 / HUMAN</span>
-      <span className="profile-code code-two" aria-hidden="true">02 / SYSTEM</span>
-      <img src="/usaid-body-cutout.png" alt="Usaid Ahmed, AI Engineer and product builder" />
-      <div className="profile-scan" aria-hidden="true" />
-      <div className="profile-nodes" aria-hidden="true"><i /><i /><i /></div>
-    </div>
-    <figcaption><span><i /> USAID AHMED</span><strong>AI Engineer · Product Builder</strong></figcaption>
+export function HeroCharacter() {
+  return <figure className="hero-system hero-character liquid-target" aria-label="Stylized portrait of Usaid Ahmed, AI Engineer and product builder">
+    <div className="system-glow" aria-hidden="true" />
+    <div className="character-grid" aria-hidden="true" />
+    <div className="system-orbit orbit-one" aria-hidden="true"><i /><i /><i /></div>
+    <div className="system-orbit orbit-two" aria-hidden="true"><i /><i /></div>
+    <img className="character-image" src="/usaid-cartoon-hero.png" alt="Cartoon portrait of Usaid Ahmed in a black polo and white trousers" />
+    <div className="system-label label-one"><i />AI ENGINEER</div>
+    <div className="system-label label-two"><i />PRODUCT</div>
+    <div className="system-label label-three"><i />FOUNDER</div>
+    <div className="system-label label-four"><i />FULL STACK</div>
+    <figcaption>
+      <span><i /> USAID AHMED</span>
+      <strong>Human insight · engineered intelligence</strong>
+    </figcaption>
+    <div className="character-scan" aria-hidden="true" />
+    <div className="character-nodes" aria-hidden="true"><i /><i /><i /></div>
   </figure>;
 }
 

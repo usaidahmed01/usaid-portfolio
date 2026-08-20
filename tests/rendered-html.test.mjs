@@ -35,17 +35,21 @@ test("renders portfolio metadata and primary positioning", async () => {
   assert.match(html, /<title>Usaid Ahmed - AI Engineer &amp; Product Builder<\/title>/i);
   assert.match(html, /Intelligence,/i);
   assert.match(html, /engineered into/i);
-  assert.match(html, /Engineering evidence/i);
-  assert.match(html, /0\.933/i);
+  assert.match(html, /Career in numbers/i);
+  assert.match(html, /25\+ Technologies across AI &amp; product/i);
+  assert.match(html, /usaid-cartoon-hero\.png/i);
+  assert.match(html, /Saylani AI Engineering/i);
   assert.doesNotMatch(html, /usaid-body-cutout\.png/i);
   assert.match(html, /href="\/blog"/i);
 });
 
-test("keeps the extracted portrait inside the self-description experience", async () => {
+test("keeps the portrait on the homepage and the about page professionally focused", async () => {
   const about = await render("/about");
   assert.equal(about.response.status, 200);
-  assert.match(about.html, /usaid-body-cutout\.png/i);
+  assert.doesNotMatch(about.html, /usaid-cartoon-hero\.png/i);
+  assert.doesNotMatch(about.html, /usaid-body-cutout\.png/i);
   assert.match(about.html, /I’m Usaid Ahmed/i);
+  assert.match(about.html, /full intelligence-to-interface stack/i);
   assert.match(about.html, /The work is active, not archived/i);
 });
 

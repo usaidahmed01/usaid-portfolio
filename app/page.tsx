@@ -1,19 +1,20 @@
 import Link from "next/link";
-import { Arrow, Footer, Header, ProjectVisual, SectionHeading } from "./components/site-shell";
-import { caseStudies, engineeringMetrics, insights, services } from "./data/site";
+import { AnimatedMetrics } from "./components/animated-metrics";
+import { Arrow, Footer, Header, HeroCharacter, ProjectVisual, SectionHeading } from "./components/site-shell";
+import { caseStudies, insights, services } from "./data/site";
 
 export default function Home() {
   return <><Header /><main>
     <section className="hero shell">
-      <div className="hero-copy"><p className="kicker hero-kicker"><span className="status-dot" /> AI engineer · Founder · Product builder</p><h1><span>Intelligence,</span><br />engineered into <em>products.</em></h1><p className="hero-description">I’m Usaid Ahmed. I turn complex AI ideas into usable products—combining machine learning, agentic workflows, RAG, data systems, and full-stack engineering.</p><div className="hero-actions"><Link className="button button-primary" href="/contact">Start a conversation <Arrow /></Link><Link className="button button-ghost" href="/work">Explore selected work <Arrow diagonal /></Link></div></div>
-      <div className="hero-system" aria-label="Animated representation of an AI product system"><div className="system-glow" /><div className="system-orbit orbit-one"><i /><i /><i /></div><div className="system-orbit orbit-two"><i /><i /></div><div className="system-core"><span>AI</span><small>PRODUCT<br />SYSTEM</small></div><div className="system-label label-one"><i />MODEL</div><div className="system-label label-two"><i />DATA</div><div className="system-label label-three"><i />PRODUCT</div><div className="system-label label-four"><i />CONTROL</div></div>
+      <div className="hero-copy"><p className="kicker hero-kicker"><span className="status-dot" /> AI Engineer · Co-Founder, AgentHive · Karachi → Global</p><h1><span>Intelligence,</span><br />engineered into <em>products.</em></h1><p className="hero-description">I’m Usaid Ahmed—an AI Engineer and Co-Founder turning ambitious AI ideas into usable products. I work across machine learning, generative AI, RAG, agentic workflows, data pipelines, APIs, and modern product interfaces.</p><div className="hero-actions"><Link className="button button-primary" href="/contact">Start a conversation <Arrow /></Link><Link className="button button-ghost" href="/work">Explore selected work <Arrow diagonal /></Link></div><p className="hero-credibility">Applied experience across <strong>Saylani AI Engineering</strong> and <strong>10Pearls Data Science</strong>.</p></div>
+      <HeroCharacter />
       <div className="hero-index"><span>01</span><i /><span>SCROLL TO EXPLORE</span></div>
     </section>
     <div className="capability-strip" aria-label="Core capabilities"><div><span>AGENTIC AI</span><i>✦</i><span>RAG SYSTEMS</span><i>✦</i><span>MACHINE LEARNING</span><i>✦</i><span>COMPUTER VISION</span><i>✦</i><span>FULL-STACK AI</span><i>✦</i><span>AGENTIC AI</span><i>✦</i><span>RAG SYSTEMS</span></div></div>
 
     <section className="manifesto section shell"><p className="section-index">/ APPROACH</p><div><p className="manifesto-lead">A promising model is only the beginning.</p><p className="manifesto-main">I design the <em>system around the intelligence</em>—the data, workflow, interface, evaluation, controls, and product decisions that make AI useful beyond the demo.</p><Link className="text-link" href="/about">How I work <Arrow /></Link></div></section>
 
-    <section className="evidence-section shell" aria-labelledby="evidence-title"><div className="evidence-intro"><p className="kicker"><span>Engineering evidence</span></p><h2 id="evidence-title">Measured where it matters.</h2><p>Research and implementation signals from selected projects—shown with context, never inflated into business claims.</p></div><div className="evidence-grid">{engineeringMetrics.map((metric) => <article key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span><p>{metric.context}</p></article>)}</div><small>* Research evaluation metric; NeuroGlioma AI is not a medical diagnosis.</small></section>
+    <AnimatedMetrics />
 
     <section className="section work-section shell"><SectionHeading eyebrow="Selected work" title="Systems with a reason to exist." action={<Link className="text-link desktop-action" href="/work">View all work <Arrow /></Link>} /><div className="featured-work">{caseStudies.slice(0, 3).map((project, index) => <Link className="project-card" href={`/work/${project.slug}`} key={project.slug}><ProjectVisual variant={project.accent} /><div className="project-meta"><span>0{index + 1}</span><p>{project.eyebrow}</p><Arrow diagonal /></div><h3>{project.title}</h3><p className="project-summary">{project.summary}</p><div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></Link>)}</div></section>
 
