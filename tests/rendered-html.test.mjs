@@ -37,7 +37,8 @@ test("renders portfolio metadata and primary positioning", async () => {
   assert.match(html, /engineered into/i);
   assert.match(html, /Career in numbers/i);
   assert.match(html, /25\+ Technologies across AI &amp; product/i);
-  assert.match(html, /usaid-cartoon-hero\.png/i);
+  assert.match(html, /usaid-cartoon-hero-v2\.png/i);
+  assert.match(html, /Book a 30-minute call/i);
   assert.match(html, /Saylani AI Engineering/i);
   assert.doesNotMatch(html, /usaid-body-cutout\.png/i);
   assert.match(html, /href="\/blog"/i);
@@ -46,11 +47,24 @@ test("renders portfolio metadata and primary positioning", async () => {
 test("keeps the portrait on the homepage and the about page professionally focused", async () => {
   const about = await render("/about");
   assert.equal(about.response.status, 200);
-  assert.doesNotMatch(about.html, /usaid-cartoon-hero\.png/i);
+  assert.doesNotMatch(about.html, /usaid-cartoon-hero-v2\.png/i);
   assert.doesNotMatch(about.html, /usaid-body-cutout\.png/i);
   assert.match(about.html, /I’m Usaid Ahmed/i);
   assert.match(about.html, /full intelligence-to-interface stack/i);
   assert.match(about.html, /The work is active, not archived/i);
+});
+
+test("animates project evidence and provides a dedicated call-booking route", async () => {
+  const project = await render("/work/neuroglioma-ai");
+  assert.equal(project.response.status, 200);
+  assert.match(project.html, /0\.933 ROC-AUC/i);
+  assert.match(project.html, /count-up-value/i);
+
+  const booking = await render("/book-a-call");
+  assert.equal(booking.response.status, 200);
+  assert.match(booking.html, /Thirty minutes to find/i);
+  assert.match(booking.html, /Request the call/i);
+  assert.match(booking.html, /Google Meet/i);
 });
 
 test("publishes the weekly blog index and article routes", async () => {
