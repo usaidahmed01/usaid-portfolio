@@ -32,3 +32,10 @@
 @media(pointer:coarse){.liquid-cursor-layer{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.capability-strip>div{animation:none}}
 .profile-art img{width:auto;height:120%;left:50%;bottom:-10%;transform:translateX(-50%);object-fit:initial;object-position:initial}.profile-portrait:hover .profile-art img{transform:translateX(-50%) translateY(-4px) scale(1.018)}
+
+/* Refined hero stacking: keep the credibility line readable above portrait signals. */
+.hero-copy{z-index:12}
+.hero-system{z-index:2}
+.hero-credibility{position:relative;z-index:15;display:table;padding:10px 18px 10px 0;line-height:1.6;color:#7f8792;background:linear-gradient(90deg,var(--ink) 0%,var(--ink) 86%,transparent 100%)}
+.hero-credibility strong{color:#c8cdd5}
+@media(max-width:720px){.hero-credibility{max-width:340px;padding-right:26px;background:linear-gradient(90deg,var(--ink) 0%,var(--ink) 94%,transparent 100%)}.hero-character{opacity:.46}.hero-character .system-label,.hero-character figcaption{display:none}}
