@@ -24,6 +24,22 @@ async function render(path = "/") {
   return { response, html: await response.text() };
 }
 
+async function askAssistant(question) {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("assistant-test", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const response = await worker.fetch(
+    new Request("http://localhost/api/portfolio-assistant", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ messages: [{ role: "user", content: question }] }),
+    }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+  return { response, json: await response.json() };
+}
+
 test("renders portfolio metadata and primary positioning", async () => {
   const { response, html } = await render();
 
@@ -87,6 +103,14 @@ test("provides recruiter proof, downloadable CV, and interactive lead qualificat
   assert.match(assessment.html, /Should this workflow/i);
   assert.match(assessment.html, /OPPORTUNITY SIGNAL/i);
   assert.match(assessment.html, /product-framing signal/i);
+});
+
+test("portfolio assistant returns grounded replies without exposing an API key", async () => {
+  const { response, json } = await askAssistant("What is AgentHive?");
+  assert.equal(response.status, 200);
+  assert.equal(json.provider, "portfolio");
+  assert.match(json.reply, /controlled sales-agent workflow/i);
+  assert.equal(json.links[0].href, "/work/agenthive");
 });
 
 test("publishes the weekly blog index and article routes", async () => {

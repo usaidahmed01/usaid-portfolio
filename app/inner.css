@@ -52,3 +52,31 @@
 @media(max-width:1000px){.hire-hero{grid-template-columns:1fr}.hire-hero aside{max-width:620px}.hire-stack{grid-template-columns:1fr}.assessment-tool{grid-template-columns:1fr}.assessment-result{position:static;border-left:0;border-top:1px solid var(--line)}}
 @media(max-width:720px){.architecture-heading,.decision-section>div:first-child,.hire-proof-heading{display:block}.architecture-heading .kicker,.decision-section>div:first-child .kicker,.hire-proof-heading .kicker{margin-bottom:28px}.architecture-flow{grid-template-columns:1fr 1fr}.architecture-flow article{min-height:160px;border-bottom:1px solid var(--line)}.architecture-flow article:nth-child(2){border-right:0}.architecture-flow article i{display:none}.decision-grid{display:block}.decision-grid article{min-height:220px}.case-direction{grid-template-columns:1fr}.hire-hero,.assessment-hero{padding-top:140px}.hire-hero h1{font-size:58px}.hire-actions{flex-direction:column;align-items:flex-start}.hire-snapshot{display:block}.hire-snapshot>p{margin-bottom:30px}.hire-snapshot>div{display:block}.hire-snapshot article{padding:25px 0;border-left:0;border-top:1px solid var(--line)}.hire-snapshot h2{margin-top:35px}.hire-proof h3{font-size:25px}.stack-groups article{grid-template-columns:35px 1fr}.stack-groups ul{grid-column:2}.hire-timeline{margin-left:0}.hire-timeline article{grid-template-columns:95px 1fr}.hire-cta{padding:38px 24px;grid-template-columns:1fr}.assessment-hero h1{font-size:60px}.assessment-controls,.assessment-result{padding:24px 18px}.assessment-principles{display:block}.assessment-principles article,.assessment-principles article:last-child{border-right:0;border-bottom:1px solid var(--line);min-height:170px;padding:25px 0}.portfolio-guide{right:15px;bottom:15px}.guide-toggle{width:66px;height:66px;border-radius:21px}.guide-toggle:hover,.guide-toggle:focus-visible{width:66px;border-radius:21px;transform:none}.portfolio-guide.is-open .guide-toggle{width:205px}.guide-orb{width:64px;height:64px;flex-basis:64px}.guide-toggle-copy{width:105px;flex-basis:105px}.guide-toggle-arrow{display:none}.guide-panel{max-height:74vh;overflow:auto}}
 @media(prefers-reduced-motion:reduce){.guide-toggle:before,.guide-orbit,.guide-orb:before,.guide-orb:after,.guide-orb>em{animation:none}}
+
+/* The portfolio guide is a real conversational surface with grounded fallback replies. */
+.guide-panel{width:min(430px,calc(100vw - 30px));padding:0;overflow:hidden}
+.guide-head{padding:21px 22px 17px;border-bottom:1px solid var(--line);background:radial-gradient(circle at 25% 0,rgba(200,255,77,.08),transparent 42%)}
+.guide-head button{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line);font-size:18px;transition:border-color .2s,color .2s}
+.guide-head button:hover{border-color:var(--lime);color:var(--lime)}
+.guide-mode{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:11px 22px;border-bottom:1px solid var(--line);background:#080c11}
+.guide-mode span{font-size:8px;text-transform:uppercase;letter-spacing:.12em;color:var(--lime)}
+.guide-mode small{font-size:8px;color:#69717c}
+.guide-chips{padding:14px 22px;margin:0;border-bottom:1px solid var(--line)}
+.guide-chips button:disabled{opacity:.45;cursor:wait}
+.guide-messages{height:300px;overflow:auto;padding:20px 22px;scrollbar-width:thin;scrollbar-color:#333 transparent;background:linear-gradient(rgba(255,255,255,.014) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);background-size:24px 24px}
+.guide-message{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;margin-bottom:17px;animation:guide-message-in .3s ease both}
+.guide-message>span{width:27px;height:27px;display:grid;place-items:center;border:1px solid rgba(200,255,77,.32);background:#111820;color:var(--lime);font-size:7px;font-weight:800;letter-spacing:.06em}
+.guide-message>div{min-width:0;background:#10161d;border:1px solid rgba(255,255,255,.08);padding:12px 13px}
+.guide-message p{font-size:11px;line-height:1.65;color:#c4c9d0;margin:0}
+.guide-message nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:11px;padding-top:10px;border-top:1px solid var(--line)}
+.guide-message nav a{font-size:8px;text-transform:uppercase;letter-spacing:.08em;color:var(--lime)}
+.guide-message.is-user{grid-template-columns:1fr 30px}
+.guide-message.is-user>span{grid-column:2;grid-row:1;border-color:rgba(102,231,255,.3);color:var(--cyan)}
+.guide-message.is-user>div{grid-column:1;grid-row:1;background:#121a21;border-color:rgba(102,231,255,.14)}
+.guide-message.is-thinking>div{display:flex;align-items:center;gap:5px;min-height:43px}
+.guide-message.is-thinking i{width:5px;height:5px;border-radius:50%;background:var(--lime);animation:guide-dot 1s ease-in-out infinite}.guide-message.is-thinking i:nth-child(2){animation-delay:.14s}.guide-message.is-thinking i:nth-child(3){animation-delay:.28s}
+.guide-message.is-thinking em{font-style:normal;font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#737b86;margin-left:5px}
+.guide-panel form{padding:16px 22px 8px;margin:0;border-top:1px solid var(--line);background:#090d12}.guide-panel form>div{position:relative}.guide-panel input{padding:14px 50px 14px 13px;border-color:rgba(255,255,255,.13)}.guide-panel input:focus{outline:none;border-color:var(--lime);box-shadow:0 0 0 1px rgba(200,255,77,.2)}.guide-panel form button{position:absolute;right:4px;top:4px;height:calc(100% - 8px);width:38px}.guide-panel form button:disabled{opacity:.35;cursor:not-allowed}
+.guide-disclaimer{margin:0;padding:7px 22px 15px;background:#090d12;font-size:7px;text-transform:uppercase;letter-spacing:.1em;color:#555e69}
+@keyframes guide-message-in{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}@keyframes guide-dot{0%,100%{opacity:.3;transform:translateY(1px)}50%{opacity:1;transform:translateY(-2px)}}
+@media(max-width:720px){.guide-panel{max-height:78vh}.guide-messages{height:260px;padding:16px}.guide-head,.guide-mode,.guide-chips,.guide-panel form{padding-inline:16px}.guide-mode{align-items:flex-start;flex-direction:column;gap:4px}.guide-disclaimer{padding-inline:16px}}

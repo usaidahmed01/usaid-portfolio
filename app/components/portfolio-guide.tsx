@@ -1,52 +1,87 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import type { AssistantLink } from "../data/assistant-context";
 
-type GuideAnswer = { title: string; text: string; links: Array<{ href: string; label: string }> };
+type Message = { id: number; role: "user" | "assistant"; content: string; links?: AssistantLink[] };
 
-const answers: Array<{ terms: string[]; answer: GuideAnswer }> = [
-  { terms: ["agent", "automation", "workflow", "agenthive"], answer: { title: "Agentic systems", text: "AgentHive is the strongest evidence: a controlled agent workflow built around tools, approvals, scoped memory, budgets, and auditability.", links: [{ href: "/work/agenthive", label: "View AgentHive" }, { href: "/services/agentic-workflows", label: "Agentic AI service" }] } },
-  { terms: ["rag", "knowledge", "chatbot", "retrieval", "llm"], answer: { title: "RAG and knowledge systems", text: "Usaid works across document ingestion, vector retrieval, grounded answers, evaluation, and the product interface around the model.", links: [{ href: "/services/rag-knowledge-systems", label: "Explore RAG capability" }, { href: "/blog/rag-needs-evaluation-not-more-prompts", label: "Read the RAG article" }] } },
-  { terms: ["vision", "image", "medical", "face", "mri"], answer: { title: "Computer vision", text: "NeuroGlioma AI demonstrates medical-imaging workflow engineering; SmartFace AI demonstrates recognition, liveness, and deterministic product rules.", links: [{ href: "/work/neuroglioma-ai", label: "NeuroGlioma AI" }, { href: "/work/smartface-ai", label: "SmartFace AI" }] } },
-  { terms: ["machine", "forecast", "data", "model", "ml"], answer: { title: "Machine learning and data", text: "The Karachi AQI work covers live ingestion, aligned datasets, feature engineering, model comparison, multiple horizons, and stakeholder visualization.", links: [{ href: "/work/aqi-forecasting", label: "AQI case study" }, { href: "/services/machine-learning-systems", label: "ML capability" }] } },
-  { terms: ["hire", "resume", "cv", "experience", "skills", "recruiter"], answer: { title: "Recruiter fast track", text: "The hiring page condenses Usaid’s experience, stack, selected proof, availability, and downloadable CV into one fast scan.", links: [{ href: "/hire-me", label: "Open hiring profile" }, { href: "/Usaid-Ahmed-CV.pdf", label: "Download CV" }] } },
-  { terms: ["call", "contact", "available", "project", "work together"], answer: { title: "Start a conversation", text: "Book a focused 30-minute discovery call for an AI product, workflow, or technical collaboration. A structured email fallback is available today.", links: [{ href: "/book-a-call", label: "Book a call" }, { href: "/ai-opportunity-assessment", label: "Assess an opportunity" }] } },
-];
+const greeting: Message = {
+  id: 1,
+  role: "assistant",
+  content: "Hi—I’m Usaid’s AI portfolio assistant. Ask me about his projects, technical stack, services, experience, or whether he fits your AI product challenge.",
+  links: [{ href: "/work", label: "Selected work" }, { href: "/hire-me", label: "Hiring profile" }],
+};
 
-const defaultAnswer: GuideAnswer = { title: "A useful place to start", text: "Choose the area closest to your goal, or ask about agents, RAG, computer vision, machine learning, experience, or starting a project.", links: [{ href: "/work", label: "Browse selected work" }, { href: "/services", label: "Explore capabilities" }] };
+const quickQuestions = ["What has Usaid built?", "What is AgentHive?", "AI & technical skills", "Is Usaid available?"];
 
 export function PortfolioGuide() {
   const [open, setOpen] = useState(false);
   const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState<GuideAnswer>(defaultAnswer);
+  const [messages, setMessages] = useState<Message[]>([greeting]);
+  const [thinking, setThinking] = useState(false);
+  const [provider, setProvider] = useState<"portfolio" | "grok">("portfolio");
+  const messageEnd = useRef<HTMLDivElement>(null);
+  const nextMessageId = useRef(2);
 
-  function ask(value: string) {
-    const normalized = value.toLowerCase();
-    const match = answers.find((item) => item.terms.some((term) => normalized.includes(term)));
-    setAnswer(match?.answer || defaultAnswer);
-    setQuestion(value);
+  useEffect(() => {
+    if (open) messageEnd.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [messages, open, thinking]);
+
+  async function ask(value: string) {
+    const clean = value.trim();
+    if (!clean || thinking) return;
+    const userMessage: Message = { id: nextMessageId.current++, role: "user", content: clean };
+    const conversation = [...messages, userMessage];
+    setMessages(conversation);
+    setQuestion("");
+    setThinking(true);
+
+    try {
+      const result = await fetch("/api/portfolio-assistant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: conversation.map(({ role, content }) => ({ role, content })) }),
+      });
+      const data = await result.json() as { reply?: string; links?: AssistantLink[]; provider?: "portfolio" | "grok"; error?: string };
+      if (!result.ok || !data.reply) throw new Error(data.error || "No reply received");
+      setProvider(data.provider || "portfolio");
+      setMessages((current) => [...current, { id: nextMessageId.current++, role: "assistant", content: data.reply!, links: data.links }]);
+    } catch {
+      setMessages((current) => [...current, {
+        id: nextMessageId.current++,
+        role: "assistant",
+        content: "I couldn’t reach the assistant service for a moment. You can retry, browse Usaid’s selected work, or contact him directly.",
+        links: [{ href: "/work", label: "Selected work" }, { href: "/book-a-call", label: "Book a call" }],
+      }]);
+    } finally {
+      setThinking(false);
+    }
   }
 
   function submit(event: FormEvent) {
     event.preventDefault();
-    if (question.trim()) ask(question);
+    void ask(question);
   }
 
   return <div className={`portfolio-guide ${open ? "is-open" : ""}`}>
-    {open && <section className="guide-panel" aria-label="Portfolio guide">
-      <div className="guide-head"><div><span><i /> PORTFOLIO GUIDE</span><strong>Ask about my work</strong></div><button type="button" onClick={() => setOpen(false)} aria-label="Close portfolio guide">×</button></div>
-      <p className="guide-grounding">Curated answers grounded in the projects and capabilities on this site.</p>
-      <div className="guide-chips">{["Agentic AI", "RAG systems", "Computer vision", "Hiring profile"].map((chip) => <button type="button" key={chip} onClick={() => ask(chip)}>{chip}</button>)}</div>
-      <div className="guide-answer" aria-live="polite"><span>{answer.title}</span><p>{answer.text}</p><div>{answer.links.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpen(false)} data-track="guide_recommendation">{link.label} →</Link>)}</div></div>
-      <form onSubmit={submit}><label htmlFor="guide-question">Ask a specific question</label><div><input id="guide-question" value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="e.g. Has Usaid built RAG systems?" /><button type="submit" aria-label="Ask question">→</button></div></form>
+    {open && <section className="guide-panel" aria-label="AI portfolio assistant">
+      <div className="guide-head"><div><span><i /> AI PORTFOLIO ASSISTANT</span><strong>Ask about Usaid</strong></div><button type="button" onClick={() => setOpen(false)} aria-label="Close portfolio assistant">×</button></div>
+      <div className="guide-mode"><span>{provider === "grok" ? "Grok connected" : "Portfolio-grounded mode"}</span><small>Answers use verified portfolio context</small></div>
+      <div className="guide-chips">{quickQuestions.map((chip) => <button type="button" key={chip} onClick={() => void ask(chip)} disabled={thinking}>{chip}</button>)}</div>
+      <div className="guide-messages" aria-live="polite" aria-busy={thinking}>
+        {messages.map((message) => <article className={`guide-message is-${message.role}`} key={message.id}>
+          <span>{message.role === "assistant" ? "AI" : "YOU"}</span>
+          <div><p>{message.content}</p>{message.links && <nav aria-label="Recommended portfolio links">{message.links.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpen(false)} data-track="guide_recommendation">{link.label} →</Link>)}</nav>}</div>
+        </article>)}
+        {thinking && <article className="guide-message is-assistant is-thinking"><span>AI</span><div><i /><i /><i /><em>Thinking</em></div></article>}
+        <div ref={messageEnd} />
+      </div>
+      <form onSubmit={submit}><label htmlFor="guide-question">Ask a specific question</label><div><input id="guide-question" value={question} onChange={(event) => setQuestion(event.target.value)} maxLength={600} disabled={thinking} autoComplete="off" placeholder="Ask about projects, skills, or availability…" /><button type="submit" disabled={thinking || !question.trim()} aria-label="Send question">→</button></div></form>
+      <p className="guide-disclaimer">Portfolio assistant · No private or client data</p>
     </section>}
     <button className="guide-toggle liquid-target" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label={open ? "Close AI portfolio assistant" : "Open AI portfolio assistant"} data-track="portfolio_guide_toggle">
-      <span className="guide-orb" aria-hidden="true">
-        <span className="guide-orbit guide-orbit-a"><i /><i /></span>
-        <span className="guide-orbit guide-orbit-b"><i /></span>
-        <b>AI</b><em />
-      </span>
+      <span className="guide-orb" aria-hidden="true"><span className="guide-orbit guide-orbit-a"><i /><i /></span><span className="guide-orbit guide-orbit-b"><i /></span><b>AI</b><em /></span>
       <span className="guide-toggle-copy"><small>{open ? "ASSISTANT ACTIVE" : "USAID’S AI ASSISTANT"}</small><strong>{open ? "Close assistant" : "Ask about my work"}</strong></span>
       <span className="guide-toggle-arrow" aria-hidden="true">{open ? "×" : "↗"}</span>
     </button>
