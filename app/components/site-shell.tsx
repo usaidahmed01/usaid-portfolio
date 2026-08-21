@@ -1,9 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "../data/site";
 
 const nav = [
   { href: "/work", label: "Work" }, { href: "/services", label: "Services" },
-  { href: "/about", label: "About" }, { href: "/blog", label: "Blog" },
+  { href: "/about", label: "About" }, { href: "/blog", label: "Blog" }, { href: "/hire-me", label: "Hire me" },
 ];
 
 export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
@@ -14,14 +15,14 @@ export function Header() {
   return <header className="site-header"><div className="shell nav-shell">
     <Link className="brand" href="/" aria-label="Usaid Ahmed home"><span className="brand-mark">UA</span><span className="brand-copy"><strong>Usaid Ahmed</strong><small>AI Engineer · Product Builder</small></span></Link>
     <nav className="desktop-nav" aria-label="Primary navigation">{nav.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}</nav>
-    <Link className="nav-cta" href="/book-a-call">Book a call <Arrow diagonal /></Link>
+    <Link className="nav-cta" href="/book-a-call" data-track="nav_book_call">Book a call <Arrow diagonal /></Link>
     <details className="mobile-menu"><summary aria-label="Open navigation"><span /><span /></summary><nav aria-label="Mobile navigation">{nav.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}<Link href="/book-a-call">Book a call <Arrow /></Link><Link href="/contact">Start a project <Arrow /></Link></nav></details>
   </div></header>;
 }
 
 export function Footer() {
   return <footer className="footer"><div className="shell">
-    <div className="footer-main"><p className="kicker"><span className="status-dot" /> Available for select AI projects</p><h2>Have an ambitious AI idea?</h2><div className="footer-actions"><Link className="button button-primary" href="/book-a-call">Book a 30-minute call <Arrow /></Link><Link className="footer-email" href={`mailto:${site.email}`}>{site.email} <Arrow diagonal /></Link></div></div>
+    <div className="footer-main"><p className="kicker"><span className="status-dot" /> Available for select AI projects</p><h2>Have an ambitious AI idea?</h2><div className="footer-actions"><Link className="button button-primary" href="/book-a-call" data-track="footer_book_call">Book a 30-minute call <Arrow /></Link><Link className="footer-email" href={`mailto:${site.email}`} data-track="footer_email">{site.email} <Arrow diagonal /></Link></div></div>
     <div className="footer-grid"><div><span className="footer-label">Navigate</span>{nav.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}</div><div><span className="footer-label">Connect</span><a href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a><a href={site.github} target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a></div><div><span className="footer-label">Based in</span><p>{site.location}<br />Working globally</p></div></div>
     <div className="footer-bottom"><span>© {new Date().getFullYear()} Usaid Ahmed</span><span>Designed around clarity, proof, and useful AI.</span></div>
   </div></footer>;
@@ -41,7 +42,7 @@ export function HeroCharacter() {
     <div className="character-grid" aria-hidden="true" />
     <div className="system-orbit orbit-one" aria-hidden="true"><i /><i /><i /></div>
     <div className="system-orbit orbit-two" aria-hidden="true"><i /><i /></div>
-    <img className="character-image" src="/usaid-cartoon-hero-v2.png" alt="Stylized cartoon portrait of Usaid Ahmed wearing a black collared shirt" />
+    <Image className="character-image" src="/usaid-cartoon-hero-v2.png" alt="Stylized cartoon portrait of Usaid Ahmed wearing a black collared shirt" width={1254} height={1254} priority />
     <div className="system-label label-one"><i />AI ENGINEER</div>
     <div className="system-label label-two"><i />PRODUCT</div>
     <div className="system-label label-three"><i />FOUNDER</div>

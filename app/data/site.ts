@@ -105,6 +105,14 @@ export const caseStudies = [
       "AgentHive combines an agent marketplace and natural-language builder with controlled tools, employee permissions, human approvals, scoped memory, budgets, task timelines, and auditability.",
     proof:
       "A controlled Sales Agent proof of concept can plan a workflow, read seeded memory, draft follow-ups, suggest meeting slots, pause for approval, and generate a report using simulated business tools.",
+    status: "Controlled proof of concept",
+    architecture: ["Natural-language task", "Planner + scoped memory", "Simulated business tools", "Human approval + report"],
+    decisions: [
+      { title: "Approval before action", reason: "High-impact actions pause with enough context for a person to review the proposed outcome." },
+      { title: "Scoped memory", reason: "Context is limited by employee, workspace, and task instead of becoming an unrestricted shared history." },
+      { title: "Observable execution", reason: "A visible task timeline makes plans, tool calls, waits, and failures inspectable." },
+    ],
+    proofPoints: ["End-to-end sales workflow runs through controlled tools", "Approval state is preserved before execution", "Budgets, permissions, memory, and audit are treated as product controls"],
     metrics: [
       { value: "01", label: "Controlled POC", detail: "End-to-end sales-agent workflow" },
       { value: "03", label: "Simulated tools", detail: "Business actions tested safely" },
@@ -128,6 +136,14 @@ export const caseStudies = [
       "The system combines calibrated classification, safety bands, DICOM/NIfTI quality gates, 3D segmentation, physical tumor quantification, anatomical localization, and a clinical viewer.",
     proof:
       "The current implementation includes a calibrated 2D classifier, validated multi-modal volume preparation, a verified MONAI segmentation bundle, physical geometry checks, and a tested clinical-viewer backend.",
+    status: "Research system in development",
+    architecture: ["DICOM / NIfTI input", "Quality gates + alignment", "Classification + segmentation", "Clinical viewer + report"],
+    decisions: [
+      { title: "Separate evidence stages", reason: "Classification, segmentation, geometry, and reporting remain independently inspectable." },
+      { title: "Calibrated safety bands", reason: "The workflow communicates uncertainty instead of turning every score into a diagnosis." },
+      { title: "Physical-space checks", reason: "Volume measurements are verified against imaging geometry rather than raw pixel counts." },
+    ],
+    proofPoints: ["Held-out classifier evaluation is documented", "Four MRI sequences pass preparation and geometry checks", "Clinical-viewer backend is covered by cross-phase automated validation"],
     metrics: [
       { value: "0.933", label: "ROC-AUC", detail: "Selected classifier" },
       { value: "0.953", label: "PR-AUC", detail: "Selected classifier" },
@@ -152,6 +168,14 @@ export const caseStudies = [
       "The team integrated SCRFD detection, ArcFace recognition, MediaPipe head movement, MiniFASNet liveness experiments, calibrated thresholds, unknown rejection, PostgreSQL, and explicit attendance rules.",
     proof:
       "The resulting system separates recognition from liveness diagnostics, documents model setup, exposes QA tools, and applies deterministic attendance logic around the model outputs.",
+    status: "Completed academic team project",
+    architecture: ["Camera input", "Face detection + recognition", "Movement + liveness gates", "Attendance rules + database"],
+    decisions: [
+      { title: "Unknown-face rejection", reason: "Low-confidence identity matches are rejected instead of forced into the closest enrolled identity." },
+      { title: "Independent liveness signal", reason: "Recognition and anti-spoof checks remain separate so one score cannot hide the other." },
+      { title: "Deterministic attendance rules", reason: "Business rules around check-in state are explicit and auditable outside the model." },
+    ],
+    proofPoints: ["Detection, recognition, movement, and liveness are separate safeguards", "QA utilities expose model setup and diagnostic signals", "PostgreSQL records deterministic attendance outcomes"],
     metrics: [
       { value: "04", label: "Vision safeguards", detail: "Detect · recognize · move · liveness" },
       { value: "02", label: "Decision gates", detail: "Identity and liveness remain separate" },
@@ -175,6 +199,14 @@ export const caseStudies = [
       "The pipeline used Open-Meteo and OpenAQ data, timestamp alignment, Parquet storage, engineered features, Ridge Regression, Random Forest, Gradient Boosting, and a Streamlit dashboard.",
     proof:
       "The system produced 24, 48, and 72-hour PM2.5 forecasting workflows and exposed model insights through a stakeholder-facing dashboard, with CI/CD and feature-store exposure.",
+    status: "Completed data science internship project",
+    architecture: ["Open-Meteo + OpenAQ", "Aligned Parquet dataset", "Features + model comparison", "Forecast dashboard"],
+    decisions: [
+      { title: "Aligned timestamps first", reason: "Weather and pollution signals are joined consistently before feature engineering and training." },
+      { title: "Compare model families", reason: "Linear and tree-based baselines expose whether added complexity earns its place." },
+      { title: "Multiple forecast horizons", reason: "24, 48, and 72-hour views support different planning decisions in one workflow." },
+    ],
+    proofPoints: ["Two live environmental data sources feed the pipeline", "Three model families were evaluated", "Forecasts are communicated through a stakeholder-facing Streamlit dashboard"],
     metrics: [
       { value: "03", label: "Forecast horizons", detail: "24 · 48 · 72 hours" },
       { value: "02", label: "Live data sources", detail: "Open-Meteo and OpenAQ" },

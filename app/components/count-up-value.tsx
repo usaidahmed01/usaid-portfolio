@@ -31,9 +31,11 @@ export function CountUpValue({ value, className, duration = 1400, label }: Count
     const target = targetRef.current;
     if (!target) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setCurrent(parsed.numeric);
-      setStarted(true);
-      return;
+      const frame = requestAnimationFrame(() => {
+        setCurrent(parsed.numeric);
+        setStarted(true);
+      });
+      return () => cancelAnimationFrame(frame);
     }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry?.isIntersecting) {

@@ -42,6 +42,9 @@ test("renders portfolio metadata and primary positioning", async () => {
   assert.match(html, /Saylani AI Engineering/i);
   assert.doesNotMatch(html, /usaid-body-cutout\.png/i);
   assert.match(html, /href="\/blog"/i);
+  assert.match(html, /href="\/hire-me"/i);
+  assert.match(html, /href="\/ai-opportunity-assessment"/i);
+  assert.match(html, /Ask about my work/i);
 });
 
 test("keeps the portrait on the homepage and the about page professionally focused", async () => {
@@ -59,12 +62,29 @@ test("animates project evidence and provides a dedicated call-booking route", as
   assert.equal(project.response.status, 200);
   assert.match(project.html, /0\.933 ROC-AUC/i);
   assert.match(project.html, /count-up-value/i);
+  assert.match(project.html, /System architecture/i);
+  assert.match(project.html, /Engineering decisions/i);
+  assert.match(project.html, /Research system in development/i);
 
   const booking = await render("/book-a-call");
   assert.equal(booking.response.status, 200);
   assert.match(booking.html, /Thirty minutes to find/i);
   assert.match(booking.html, /Request the call/i);
   assert.match(booking.html, /Google Meet/i);
+});
+
+test("provides recruiter proof, downloadable CV, and interactive lead qualification", async () => {
+  const hire = await render("/hire-me");
+  assert.equal(hire.response.status, 200);
+  assert.match(hire.html, /Recruiter fast track/i);
+  assert.match(hire.html, /Usaid-Ahmed-CV\.pdf/i);
+  assert.match(hire.html, /One engineer across the intelligence-to-interface stack/i);
+
+  const assessment = await render("/ai-opportunity-assessment");
+  assert.equal(assessment.response.status, 200);
+  assert.match(assessment.html, /Should this workflow/i);
+  assert.match(assessment.html, /OPPORTUNITY SIGNAL/i);
+  assert.match(assessment.html, /product-framing signal/i);
 });
 
 test("publishes the weekly blog index and article routes", async () => {

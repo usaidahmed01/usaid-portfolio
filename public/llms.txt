@@ -27,6 +27,16 @@ Usaid Ahmed is an AI Engineer, full-stack AI product builder, and Co-Founder of 
 - RSS feed: /feed.xml
 - Topics include AI product engineering, RAG evaluation, agentic workflows, human approvals, machine learning, and dependable AI systems.
 
+## Useful routes
+- Recruiter fast track and downloadable CV: /hire-me
+- Interactive AI opportunity assessment: /ai-opportunity-assessment
+- Discovery call request: /book-a-call
+- Detailed project evidence: /work
+
+## Interactive tools
+- The AI opportunity assessment gives a product-framing signal based on workflow repetition, data access, frequency, evaluability, manual effort, and reversibility. It is not a guaranteed ROI calculation.
+- The on-site portfolio guide uses curated, portfolio-grounded answers. It is not an open-ended AI model and does not invent project claims.
+
 ## Important accuracy notes
 - AgentHive is an early-stage product under active development. Its current proof of concept uses simulated business tools and does not claim live autonomous enterprise integrations.
 - NeuroGlioma AI is research decision-support software under development and must not be represented as medical diagnosis.
