@@ -45,6 +45,8 @@ test("renders portfolio metadata and primary positioning", async () => {
   assert.match(html, /href="\/hire-me"/i);
   assert.match(html, /href="\/ai-opportunity-assessment"/i);
   assert.match(html, /Ask about my work/i);
+  assert.match(html, /USAID’S AI ASSISTANT/i);
+  assert.match(html, /Open AI portfolio assistant/i);
 });
 
 test("keeps the portrait on the homepage and the about page professionally focused", async () => {

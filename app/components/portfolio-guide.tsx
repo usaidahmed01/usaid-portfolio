@@ -41,6 +41,14 @@ export function PortfolioGuide() {
       <div className="guide-answer" aria-live="polite"><span>{answer.title}</span><p>{answer.text}</p><div>{answer.links.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpen(false)} data-track="guide_recommendation">{link.label} →</Link>)}</div></div>
       <form onSubmit={submit}><label htmlFor="guide-question">Ask a specific question</label><div><input id="guide-question" value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="e.g. Has Usaid built RAG systems?" /><button type="submit" aria-label="Ask question">→</button></div></form>
     </section>}
-    <button className="guide-toggle liquid-target" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open}><i /> {open ? "Close guide" : "Ask about my work"}</button>
+    <button className="guide-toggle liquid-target" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label={open ? "Close AI portfolio assistant" : "Open AI portfolio assistant"} data-track="portfolio_guide_toggle">
+      <span className="guide-orb" aria-hidden="true">
+        <span className="guide-orbit guide-orbit-a"><i /><i /></span>
+        <span className="guide-orbit guide-orbit-b"><i /></span>
+        <b>AI</b><em />
+      </span>
+      <span className="guide-toggle-copy"><small>{open ? "ASSISTANT ACTIVE" : "USAID’S AI ASSISTANT"}</small><strong>{open ? "Close assistant" : "Ask about my work"}</strong></span>
+      <span className="guide-toggle-arrow" aria-hidden="true">{open ? "×" : "↗"}</span>
+    </button>
   </div>;
 }
