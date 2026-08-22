@@ -97,7 +97,7 @@ test("provides recruiter proof, downloadable CV, and interactive lead qualificat
   assert.match(hire.html, /Recruiter fast track/i);
   assert.match(hire.html, /Usaid-Ahmed-CV\.pdf/i);
   assert.match(hire.html, /One engineer across the intelligence-to-interface stack/i);
-  assert.match(hire.html, /Choose the role lens/i);
+  assert.match(hire.html, /Choose your hiring lens/i);
   assert.match(hire.html, /AI Product Builder/i);
 
   const assessment = await render("/ai-opportunity-assessment");
@@ -114,8 +114,8 @@ test("publishes an honest founder build log", async () => {
   assert.equal(buildLog.response.status, 200);
   assert.match(buildLog.html, /Building AgentHive/i);
   assert.match(buildLog.html, /Multi-tenant MVP architecture/i);
-  assert.match(buildLog.html, /Controlled Sales Agent POC/i);
-  assert.match(buildLog.html, /Planned work stays labelled planned/i);
+  assert.match(buildLog.html, /Controlled Sales Agent/i);
+  assert.match(buildLog.html, /Nothing planned is presented as already shipped/i);
 });
 
 test("portfolio assistant returns grounded replies without exposing an API key", async () => {
@@ -131,8 +131,8 @@ test("publishes the weekly blog index and article routes", async () => {
   assert.equal(blog.response.status, 200);
   assert.match(blog.html, /Notes from inside the build/i);
   assert.match(blog.html, /href="\/feed\.xml"/i);
-  assert.match(blog.html, /Search articles/i);
-  assert.match(blog.html, /Filter by topic/i);
+  assert.match(blog.html, /Search insights/i);
+  assert.match(blog.html, />Topic</i);
 
   const article = await render("/blog/why-ai-products-fail-after-the-demo");
   assert.equal(article.response.status, 200);
