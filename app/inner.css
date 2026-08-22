@@ -99,3 +99,29 @@
 @media(max-width:1000px){.build-log-hero{grid-template-columns:1fr}.build-log-hero aside{max-width:650px}.build-log-timeline{grid-template-columns:1fr}.build-log-heading{position:static;max-width:800px}.track-heading{grid-template-columns:1fr 1fr}.track-heading .kicker{grid-column:1/-1}.track-panel{grid-template-columns:1fr 1fr}.track-panel>div:last-child{grid-column:1/-1;border-top:1px solid var(--line);min-height:auto}.track-panel>div:nth-child(2){border-right:0}}
 @media(max-width:720px){.assessment-report-actions{align-items:flex-start!important;flex-direction:column}.build-log-hero{padding-top:140px}.build-log-hero h1{font-size:58px}.build-log-signals{grid-template-columns:1fr 1fr}.build-log-signals article{min-height:170px;border-bottom:1px solid var(--line)}.build-log-signals article:nth-child(2){border-right:0}.build-log-timeline{padding-block:85px}.build-log-list article{grid-template-columns:30px 1fr}.build-log-list article>em{grid-column:2;justify-self:start}.build-log-principles .shell>div{display:block}.build-log-principles article,.build-log-principles article+article{min-height:210px;padding:25px 0;border-right:0;border-bottom:1px solid rgba(7,9,13,.2)}.build-log-cta{grid-template-columns:1fr}.build-log-cta>div:last-child{align-items:flex-start;flex-direction:column}.track-heading{display:block}.track-heading .kicker,.track-heading h2{margin-bottom:25px}.track-tabs{grid-template-columns:1fr}.track-tabs button{border-right:0;border-bottom:1px solid var(--line)}.track-panel{display:block}.track-panel>div{min-height:auto;border-right:0;border-bottom:1px solid var(--line);padding:24px}.track-panel h3{margin-top:35px}.track-panel ul,.track-panel>div:last-child a:first-of-type{margin-top:30px}.blog-filters{grid-template-columns:1fr}.calendar-embed{padding:12px}.calendar-embed iframe{height:620px}}
 @media print{.site-header,.footer,.portfolio-guide,.liquid-cursor-layer,.assessment-controls,.assessment-principles,.assessment-report-actions,.assessment-result>.button{display:none!important}.assessment-page{background:white!important;color:black!important}.assessment-hero{padding:30px 0}.assessment-hero h1{font-size:52px}.assessment-tool{display:block;border:0}.assessment-result{border:1px solid #bbb;background:white;color:black}.assessment-result>strong,.assessment-result .result-label{color:#566f19}.assessment-result>div p,.result-note{color:#333}.assessment-result>h2{color:black}}
+
+/* Device-safe floating guide and compact content layouts. */
+.portfolio-guide{right:max(24px,env(safe-area-inset-right));bottom:max(24px,env(safe-area-inset-bottom))}
+@media(max-width:720px){
+  .portfolio-guide{right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom))}
+  .guide-toggle{width:58px;height:58px;border-radius:19px}
+  .guide-toggle:hover,.guide-toggle:focus-visible{width:58px;border-radius:19px}
+  .portfolio-guide.is-open .guide-toggle{width:min(205px,calc(100vw - 24px))}
+  .guide-orb{width:56px;height:56px;flex-basis:56px}
+  .guide-orb:before{width:30px;height:30px}
+  .guide-orb:after{width:43px;height:43px}
+  .guide-panel{width:calc(100vw - 24px);max-height:calc(100dvh - 94px)}
+}
+@media(max-width:480px){
+  .page-intro h1,.case-hero h1,.service-hero h1,.article-header h1,.contact-intro h1,.booking-intro h1,.hire-hero h1,.assessment-hero h1,.build-log-hero h1{font-size:clamp(44px,14vw,58px);overflow-wrap:break-word}
+  .case-metrics{grid-template-columns:1fr}
+  .case-metrics article{min-height:160px;border-left:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .case-metrics article:last-child{border-bottom:0}
+  .architecture-flow,.build-log-signals{grid-template-columns:1fr}
+  .architecture-flow article,.build-log-signals article{border-right:0;border-bottom:1px solid var(--line)}
+  .service-card{padding:28px 20px;grid-template-columns:34px 1fr 18px}
+  .service-card ul{grid-template-columns:1fr}
+  .post-row{grid-template-columns:28px minmax(0,1fr) 18px;gap:8px}
+  .post-row h2{font-size:30px}
+  .contact-direct a{font-size:18px;overflow-wrap:anywhere}
+}
