@@ -1,6 +1,6 @@
 import { insights } from "../data/site";
 
-const base = "https://usaid-portfolio.basit-ahmed906.chatgpt.site";
+const base = "https://usaid-portfolio-sooty.vercel.app";
 const escapeXml = (value: string) => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 
 export function GET() {

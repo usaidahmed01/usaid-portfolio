@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { caseStudies, insights, services } from "./data/site";
 
-const base = "https://usaid-portfolio.basit-ahmed906.chatgpt.site";
+const base = "https://usaid-portfolio-sooty.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = ["", "/work", "/services", "/about", "/blog", "/contact", "/book-a-call", "/hire-me", "/ai-opportunity-assessment", "/build-log"].map((path) => ({ url: `${base}${path}`, lastModified: new Date(), changeFrequency: path === "/blog" || path === "/build-log" ? "weekly" as const : "monthly" as const, priority: path === "" ? 1 : .8 }));

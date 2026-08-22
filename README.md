@@ -2,6 +2,8 @@
 
 A proof-led personal portfolio built to present AI engineering work, communicate services, publish practical writing, and convert qualified visitors into project or hiring conversations.
 
+**Live portfolio:** [usaid-portfolio-sooty.vercel.app](https://usaid-portfolio-sooty.vercel.app)
+
 ## What is included
 
 - Conversion-focused homepage with interactive metrics and an AI-themed portrait
