@@ -25,6 +25,18 @@ export default function Assessment() {
     return { percent, readiness, solution, guardrail };
   }, [scores, workflow]);
 
+  function downloadReport() {
+    const workflowLabel = workflow === "knowledge" ? "Finding and using knowledge" : workflow === "actions" ? "Taking actions across tools" : workflow === "prediction" ? "Predicting or classifying" : "Understanding images or video";
+    const scoreLines = questions.map((item) => `- ${item.label}: ${scores[item.id]}/5`).join("\n");
+    const report = `# AI Opportunity Assessment\n\nGenerated from Usaid Ahmed's portfolio assessment.\n\n## Result\n- Opportunity signal: ${result.percent}%\n- Readiness: ${result.readiness}\n- Recommended first pattern: ${result.solution}\n- Control recommendation: ${result.guardrail}\n- Workflow type: ${workflowLabel}\n\n## Assessment inputs\n${scoreLines}\n\n## Recommended next move\nTest one narrow end-to-end workflow with representative inputs, a measurable success condition, and a visible human escalation path before expanding scope.\n\nThis is a product-framing signal, not a guaranteed ROI calculation.\n\nDiscuss the opportunity: https://usaid-portfolio.basit-ahmed906.chatgpt.site/book-a-call\n`;
+    const url = URL.createObjectURL(new Blob([report], { type: "text/markdown;charset=utf-8" }));
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = `usaid-ai-opportunity-${result.percent}.md`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  }
+
   return <div className="assessment-tool">
     <div className="assessment-controls">
       <label className="assessment-select"><span>Primary workflow type</span><select value={workflow} onChange={(event) => setWorkflow(event.target.value)}><option value="knowledge">Finding and using knowledge</option><option value="actions">Taking actions across tools</option><option value="prediction">Predicting or classifying</option><option value="vision">Understanding images or video</option></select></label>
@@ -37,6 +49,7 @@ export default function Assessment() {
       <div><span>Best first pattern</span><p>{result.solution}</p></div>
       <div><span>Control recommendation</span><p>{result.guardrail}</p></div>
       <div><span>Useful next move</span><p>Test one narrow end-to-end workflow with representative inputs before expanding scope.</p></div>
+      <div className="assessment-report-actions"><button className="button button-ghost" type="button" onClick={downloadReport} data-track="assessment_download">Download report <span>↓</span></button><button className="report-print" type="button" onClick={() => window.print()} data-track="assessment_print">Print / save PDF</button></div>
       <Link className="button button-primary" href={`/book-a-call?assessment=${result.percent}`} data-track="assessment_book_call">Discuss this opportunity <span>→</span></Link>
       <p className="result-note">This is a product-framing signal, not a guaranteed ROI calculation.</p>
     </aside>

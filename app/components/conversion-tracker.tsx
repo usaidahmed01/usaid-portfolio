@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { track } from "@vercel/analytics";
 
 declare global {
   interface Window {
@@ -20,6 +21,7 @@ export function ConversionTracker() {
       const payload = { event: "portfolio_conversion", action: name, path: window.location.pathname };
       window.dataLayer?.push(payload);
       window.plausible?.("Portfolio conversion", { props: { action: name, path: window.location.pathname } });
+      track("Portfolio conversion", { action: name, path: window.location.pathname });
       window.dispatchEvent(new CustomEvent("portfolio:conversion", { detail: payload }));
     };
     document.addEventListener("click", onClick);

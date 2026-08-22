@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, Footer, Header } from "../components/site-shell";
+import RecruiterTracks from "./recruiter-tracks";
 
 export const metadata: Metadata = {
   title: "Hire Usaid — AI Engineer",
@@ -21,6 +22,8 @@ export default function HireMePage() {
     <section className="hire-hero shell"><div><p className="kicker"><span>Recruiter fast track</span></p><h1>AI engineer who can carry an idea from <em>model to product.</em></h1><p>I build across data, machine learning, generative AI, agentic workflows, APIs, and modern interfaces—while keeping evaluation, uncertainty, and real user workflows in view.</p><div className="hire-actions"><a className="button button-primary" href="/Usaid-Ahmed-CV.pdf" download data-track="cv_download">Download my CV <Arrow /></a><Link className="button button-ghost" href="/book-a-call" data-track="recruiter_book_call">Book an interview <Arrow diagonal /></Link></div></div><aside><span><i /> OPEN TO CONVERSATIONS</span><div><small>Based in</small><strong>Karachi, Pakistan</strong></div><div><small>Working model</small><strong>Remote · Global teams</strong></div><div><small>Best fit</small><strong>AI engineering · AI product roles</strong></div></aside></section>
 
     <section className="hire-snapshot shell"><p>Fast profile</p><div><article><span>01</span><h2>End-to-end builder</h2><p>Comfortable connecting intelligent models to data pipelines, APIs, databases, interfaces, and deployment workflows.</p></article><article><span>02</span><h2>Product-aware engineer</h2><p>Frames the user, decision, evaluation, risk, and control layer—not only the model output.</p></article><article><span>03</span><h2>Founder mindset</h2><p>Co-building AgentHive while turning product requirements into controlled technical workflows.</p></article></div></section>
+
+    <RecruiterTracks />
 
     <section className="hire-proof shell"><div className="hire-proof-heading"><p className="kicker"><span>Selected evidence</span></p><h2>Proof worth opening.</h2></div><div>{[["AgentHive", "Agentic AI · Founder venture", "/work/agenthive"], ["NeuroGlioma AI", "Medical imaging · AI product", "/work/neuroglioma-ai"], ["SmartFace AI", "Computer vision · Team lead", "/work/smartface-ai"], ["Karachi AQI", "Forecasting · Data science", "/work/aqi-forecasting"]].map(([title, label, href], index) => <Link href={href} key={title}><span>0{index + 1}</span><div><small>{label}</small><h3>{title}</h3></div><Arrow diagonal /></Link>)}</div></section>
 

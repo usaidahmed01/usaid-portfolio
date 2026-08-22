@@ -25,16 +25,22 @@ Usaid Ahmed is an AI Engineer, full-stack AI product builder, and Co-Founder of 
 ## Weekly blog
 - Index: /blog
 - RSS feed: /feed.xml
+- The blog index includes keyword search and topic filters for faster discovery.
 - Topics include AI product engineering, RAG evaluation, agentic workflows, human approvals, machine learning, and dependable AI systems.
 
+## Founder build log
+- Index: /build-log
+- Tracks AgentHive product decisions and engineering milestones without presenting roadmap items as completed work.
+- Current documented stage: multi-tenant MVP architecture in progress after a controlled Sales Agent proof of concept.
+
 ## Useful routes
-- Recruiter fast track and downloadable CV: /hire-me
-- Interactive AI opportunity assessment: /ai-opportunity-assessment
+- Recruiter fast track, role-specific profiles, and downloadable CV: /hire-me
+- Interactive AI opportunity assessment with downloadable and print-ready report: /ai-opportunity-assessment
 - Discovery call request: /book-a-call
 - Detailed project evidence: /work
 
 ## Interactive tools
-- The AI opportunity assessment gives a product-framing signal based on workflow repetition, data access, frequency, evaluability, manual effort, and reversibility. It is not a guaranteed ROI calculation.
+- The AI opportunity assessment gives a product-framing signal based on workflow repetition, data access, frequency, evaluability, manual effort, and reversibility. Visitors can download the result as Markdown or print it to PDF. It is not a guaranteed ROI calculation.
 - The on-site portfolio guide uses curated, portfolio-grounded answers. It is not an open-ended AI model and does not invent project claims.
 
 ## Important accuracy notes

@@ -3,6 +3,7 @@ import { site } from "./data/site";
 import { LiquidCursor } from "./components/liquid-cursor";
 import { ConversionTracker } from "./components/conversion-tracker";
 import { PortfolioGuide } from "./components/portfolio-guide";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import "./inner.css";
 
@@ -22,5 +23,5 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, them
 const profileSchema = { "@context": "https://schema.org", "@type": "ProfilePage", name: "Usaid Ahmed — AI Engineer & Product Builder", url: "https://usaid-portfolio.basit-ahmed906.chatgpt.site", mainEntity: { "@type": "Person", name: site.name, jobTitle: site.title, url: "https://usaid-portfolio.basit-ahmed906.chatgpt.site", email: `mailto:${site.email}`, address: { "@type": "PostalAddress", addressLocality: "Karachi", addressCountry: "PK" }, sameAs: [site.github, site.linkedin], knowsAbout: ["Artificial Intelligence", "Machine Learning", "Agentic AI", "Retrieval-Augmented Generation", "Computer Vision", "Full-stack AI product development"] } };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><a className="skip-link" href="#main-content">Skip to content</a><LiquidCursor /><ConversionTracker /><PortfolioGuide /><div id="main-content">{children}</div><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }} /></body></html>;
+  return <html lang="en"><body><a className="skip-link" href="#main-content">Skip to content</a><LiquidCursor /><ConversionTracker /><Analytics /><PortfolioGuide /><div id="main-content">{children}</div><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }} /></body></html>;
 }
